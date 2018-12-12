@@ -101,11 +101,5 @@
   <ItemGroup>
     <Resource Include="Textures\map.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Textures\letter.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Textures\player.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
