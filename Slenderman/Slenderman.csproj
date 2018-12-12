@@ -71,6 +71,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Map.cs" />
     <Compile Include="Paper.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -106,6 +107,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Textures\player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Textures\wall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Textures\floor.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
