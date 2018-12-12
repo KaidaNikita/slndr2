@@ -6,8 +6,21 @@
         xmlns:local="clr-namespace:Slenderman"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-	<Canvas Background="#FF2E0906"  Name="canvas">
-		<Rectangle Fill="LemonChiffon" Height="22" Canvas.Left="184" Stroke="Black" StrokeThickness="1" Canvas.Top="40" Width="433"/>
+	<Window.Resources>
+		<ImageBrush x:Key="let" ImageSource="Textures/letter.jpg">
+		</ImageBrush>
+	</Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="26*"/>
+			<RowDefinition Height="393*"/>
+		</Grid.RowDefinitions>
+		<Label Name="papers" Foreground="Black">
+			Count of papers 0/3
+		</Label>
+		<Canvas Background="#FF2E0906"  Name="canvas" Grid.Row="1">
+
+			<!--<Rectangle Fill="LemonChiffon" Height="22" Canvas.Left="184" Stroke="Black" StrokeThickness="1" Canvas.Top="40" Width="433"/>
 		<Rectangle Fill="LemonChiffon" Height="22" Canvas.Left="184" Stroke="Black" StrokeThickness="1" Canvas.Top="264" Width="433"/>
 		<Rectangle Fill="LemonChiffon" Height="26" Canvas.Left="480" Stroke="Black" StrokeThickness="1" Canvas.Top="150" Width="246" RenderTransformOrigin="0.5,0.5">
 			<Rectangle.RenderTransform>
@@ -34,8 +47,8 @@
 				<ImageBrush ImageSource="Textures/letter.jpg" Stretch="UniformToFill"/>
 			</Ellipse.Fill>
 		</Ellipse>
-		<Label x:Name="papers" Content="Count of letters 0/3"  Canvas.Left="10" Canvas.Top="5" Foreground="#FF7308DE" FontSize="18" />
-		<!--<Path Fill="LemonChiffon" Stroke="Black" StrokeThickness="1" Height="51.287" Stretch="Fill" Width="317.992" Canvas.Left="218.004" Canvas.Top="139">
+		<Label x:Name="papers" Content="Count of letters 0/3"  Canvas.Left="10" Canvas.Top="5" Foreground="#FF7308DE" FontSize="18" />-->
+			<!--<Path Fill="LemonChiffon" Stroke="Black" StrokeThickness="1" Height="51.287" Stretch="Fill" Width="317.992" Canvas.Left="218.004" Canvas.Top="139">
 			<Path.Data>
 				<GeometryGroup>
 					<RectangleGeometry Rect="50,50,25,25">
@@ -46,5 +59,7 @@
 			</Path.Data>
 		</Path>-->
 
-	</Canvas>
+		</Canvas>
+	</Grid>
+
 </Window>
