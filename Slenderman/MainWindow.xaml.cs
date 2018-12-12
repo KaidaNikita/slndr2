@@ -107,29 +107,7 @@ namespace Slenderman
                 }
             }
         }
-
-        bool IsIntersect()
-        {
-            bool temp = false;
-            foreach (var el in canvas.Children)
-            {
-                try
-                {
-                    GeneralTransform t1 = (el as Rectangle).TransformToVisual(this);
-                    GeneralTransform t2 = player.TransformToVisual(this);
-                    Rect r1 = t1.TransformBounds(new Rect() { X = 0, Y = 0, Width = (el as Rectangle).ActualWidth, Height = (el as Rectangle).ActualHeight });
-                    Rect r2 = t2.TransformBounds(new Rect() { X = 0, Y = 0, Width = player.ActualWidth, Height = player.ActualHeight });
-                    bool result = r1.IntersectsWith(r2);
-                    if (result)
-                    {
-                        return true; 
-                    }
-                }
-
-                catch { }
-            }
-            return temp;
-        }
+        
 
 
         bool IsLetter()
