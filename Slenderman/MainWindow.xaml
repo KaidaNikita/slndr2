@@ -19,7 +19,7 @@
 				</TransformGroup>
 			</Rectangle.RenderTransform>
 		</Rectangle>
-		<Rectangle Fill="LemonChiffon" Height="22" Canvas.Left="247" Stroke="Black" StrokeThickness="1" Canvas.Top="172" Width="205" RenderTransformOrigin="0.5,0.5">
+		<Rectangle Fill="LemonChiffon" Height="22" Canvas.Left="273" Stroke="Black" StrokeThickness="1" Canvas.Top="196" Width="157" RenderTransformOrigin="0.5,0.5">
 			<Rectangle.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -29,6 +29,12 @@
 				</TransformGroup>
 			</Rectangle.RenderTransform>
 		</Rectangle>
+		<Ellipse  Height="57" Canvas.Left="445" Stroke="Black" Canvas.Top="202" Width="37" RenderTransformOrigin="1.098,1.469">
+			<Ellipse.Fill>
+				<ImageBrush ImageSource="Textures/letter.jpg" Stretch="UniformToFill"/>
+			</Ellipse.Fill>
+		</Ellipse>
+		<Label x:Name="papers" Content="Count of letters 0/3"  Canvas.Left="10" Canvas.Top="5" Foreground="#FF7308DE" FontSize="18" />
 		<!--<Path Fill="LemonChiffon" Stroke="Black" StrokeThickness="1" Height="51.287" Stretch="Fill" Width="317.992" Canvas.Left="218.004" Canvas.Top="139">
 			<Path.Data>
 				<GeometryGroup>

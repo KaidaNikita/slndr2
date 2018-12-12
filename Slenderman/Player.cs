@@ -9,7 +9,7 @@ namespace Slenderman
 {
     class Player:Image
     {
-        int count_of_papers;
+      public int count_of_papers=0;
         List<Item> items=new List<Item>();
         public Player()
         {
