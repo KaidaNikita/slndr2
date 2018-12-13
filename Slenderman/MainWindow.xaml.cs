@@ -145,61 +145,81 @@ namespace Slenderman
        
         bool IsWallRight()
         {
-            int tmpx = ((int)Canvas.GetLeft(player) + (int)player.ActualWidth + 3) / 25;
+            int tmpx1 = ((int)Canvas.GetLeft(player) + (int)player.ActualWidth + 1) / 25;
+            int tmpx2 = (((int)Canvas.GetLeft(player) + (int)player.ActualWidth) / 25)+24;
             int tmpy = ((int)Canvas.GetTop(player)) / 25;
             if(tmpy>=1)
             {
-                tmpx += tmpy*24;
+                tmpx1 += tmpy * 24;
+                tmpx2 += tmpy * 24;
             }
-            if (mymap.map[tmpx] == 1)
+            try
             {
-                return true;
+                if (mymap.map[tmpx1] == 1 || mymap.map[tmpx2] == 1)
+                {
+                    return true;
+                }
             }
+            catch { }
             return false;
         }
 
         bool IsWallLeft()
         {
-            int tmpx = ((int)Canvas.GetLeft(player) - 3) / 25;
+            int tmpx1 = ((int)Canvas.GetLeft(player) - 1) / 25;
+            int tmpx2 = (((int)Canvas.GetLeft(player)) / 25)+24;
             int tmpy = ((int)Canvas.GetTop(player)) / 25;
             if (tmpy >= 1)
             {
-                tmpx += tmpy * 24;
+                tmpx1 += tmpy * 24;
+                tmpx2 += tmpy * 24;
             }
-            if (mymap.map[tmpx] == 1)
+            try
             {
-                return true;
+                if (mymap.map[tmpx1] == 1 || mymap.map[tmpx2] == 1)
+                {
+                    return true;
+                }
             }
+            catch { }
             return false;
         }
 
         bool IsWallTop()
         {
             int tmpx = ((int)Canvas.GetLeft(player)) / 25;
-            int tmpy = (((int)Canvas.GetTop(player)-3) / 25);
+            int tmpy = (((int)Canvas.GetTop(player) + (int)player.ActualHeight + 1) / 25);
             if (tmpy >= 1)
             {
                 tmpx += tmpy * 24;
             }
-            if (mymap.map[tmpx] == 1)
+            try
             {
-                return true;
+                if (mymap.map[tmpx] == 1 || mymap.map[tmpx - 24] == 1)
+                {
+                    return true;
+                }
             }
+            catch { }
             return false;
         }
 
         bool IsWallBottom()
         {
             int tmpx = ((int)Canvas.GetLeft(player)) / 25;
-            int tmpy = ((int)Canvas.GetTop(player) + (int)player.ActualHeight + 3) / 25;
+            int tmpy = ((int)Canvas.GetTop(player) - 1) / 25;
             if (tmpy >= 1)
             {
                 tmpx += tmpy * 24;
             }
-            if (mymap.map[tmpx] == 1)
+            try
             {
-                return true;
+                if (mymap.map[tmpx] == 1 || mymap.map[tmpx + 24] == 1)
+                {
+                    return true;
+                }
             }
+            catch { }
             return false;
         }
 
@@ -237,29 +257,29 @@ namespace Slenderman
             {
                 if (!IsWallLeft())
                 {
-                    Canvas.SetLeft(player, Canvas.GetLeft(player) - 3);
+                    Canvas.SetLeft(player, Canvas.GetLeft(player) - 1);
                 }
             }
             if ((e.Key == System.Windows.Input.Key.D || e.Key == System.Windows.Input.Key.Right))
             {       
                 if (!IsWallRight())
                 {   
-                Canvas.SetLeft(player, Canvas.GetLeft(player) + 3);
+                Canvas.SetLeft(player, Canvas.GetLeft(player) + 1);
                 }
             }   
             if ((e.Key == System.Windows.Input.Key.W || e.Key == System.Windows.Input.Key.Up))
             {
-                if (!IsWallTop())
+                if (!IsWallBottom())
                 {
-                    Canvas.SetTop(player, Canvas.GetTop(player) - 3);
+                    Canvas.SetTop(player, Canvas.GetTop(player) - 1);
                 }
                 
             }
             if ((e.Key == System.Windows.Input.Key.S || e.Key == System.Windows.Input.Key.Down))
             {
-                if (!IsWallBottom())
+                if (!IsWallTop())
                 {
-                    Canvas.SetTop(player, Canvas.GetTop(player) + 3);
+                    Canvas.SetTop(player, Canvas.GetTop(player) + 1);
                 }
             }
         }
