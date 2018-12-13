@@ -233,21 +233,21 @@ namespace Slenderman
           
             }
 
-            if ((e.Key == System.Windows.Input.Key.A || e.Key == System.Windows.Input.Key.Left) && Canvas.GetLeft(player) > 1)
+            if ((e.Key == System.Windows.Input.Key.A || e.Key == System.Windows.Input.Key.Left))
             {
                 if (!IsWallLeft())
                 {
                     Canvas.SetLeft(player, Canvas.GetLeft(player) - 3);
                 }
             }
-            if ((e.Key == System.Windows.Input.Key.D || e.Key == System.Windows.Input.Key.Right) && Canvas.GetLeft(player) < Width-38)
+            if ((e.Key == System.Windows.Input.Key.D || e.Key == System.Windows.Input.Key.Right))
             {       
                 if (!IsWallRight())
                 {   
                 Canvas.SetLeft(player, Canvas.GetLeft(player) + 3);
                 }
             }   
-            if ((e.Key == System.Windows.Input.Key.W || e.Key == System.Windows.Input.Key.Up) && Canvas.GetTop(player) >= -2)
+            if ((e.Key == System.Windows.Input.Key.W || e.Key == System.Windows.Input.Key.Up))
             {
                 if (!IsWallTop())
                 {
@@ -255,7 +255,7 @@ namespace Slenderman
                 }
                 
             }
-            if ((e.Key == System.Windows.Input.Key.S || e.Key == System.Windows.Input.Key.Down) && Canvas.GetTop(player) < Height - 57)
+            if ((e.Key == System.Windows.Input.Key.S || e.Key == System.Windows.Input.Key.Down))
             {
                 if (!IsWallBottom())
                 {
