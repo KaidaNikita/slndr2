@@ -186,12 +186,17 @@ namespace Slenderman
         bool IsWallRight()
         {
             int tmpx1 = ((int)Canvas.GetLeft(player) + (int)player.ActualWidth + 1) / 25;
-            int tmpx2 = (((int)Canvas.GetLeft(player) + (int)player.ActualWidth) / 25)+24;
-            int tmpy = ((int)Canvas.GetTop(player)) / 25;
-            if(tmpy>=1)
+            int tmpx2 = (int)((Canvas.GetLeft(player) + (int)player.ActualWidth - 1) / 25);
+            int tmpy = ((int)Canvas.GetTop(player) / 25);
+            int tmpy2 = ((int)Canvas.GetTop(player) + (int)player.ActualHeight) / 25;
+            if (tmpy>=1)
             {
                 tmpx1 += tmpy * 24;
-                tmpx2 += tmpy * 24;
+            }
+            if (tmpy2 >= 1)
+            {
+
+                tmpx2 += tmpy2 * 24;
             }
             try
             {
@@ -207,8 +212,34 @@ namespace Slenderman
         bool IsWallLeft()
         {
             int tmpx1 = ((int)Canvas.GetLeft(player) - 1) / 25;
-            int tmpx2 = (((int)Canvas.GetLeft(player)) / 25)+24;
-            int tmpy = ((int)Canvas.GetTop(player)) / 25;
+            int tmpx2 = (int)((Canvas.GetLeft(player) - 1) / 25);
+            int tmpy = ((int)Canvas.GetTop(player) / 25);
+            int tmpy2 = ((int)Canvas.GetTop(player) + (int)player.ActualHeight) / 25;
+            if (tmpy >= 1)
+            {
+                tmpx1 += tmpy * 24;
+            }
+            if (tmpy2 >= 1)
+            {
+
+                tmpx2 += tmpy2 * 24;
+            }
+            try
+            {
+                if (mymap.map[tmpx1] == 1 || mymap.map[tmpx2] == 1)
+                {
+                    return true;
+                }
+            }
+            catch { }
+            return false;
+        }
+
+        bool IsWallTop()
+        {
+            int tmpx1 = ((int)Canvas.GetLeft(player)) / 25;
+            int tmpx2 = (((int)Canvas.GetLeft(player) + (int)player.ActualWidth) / 25);
+            int tmpy = (((int)Canvas.GetTop(player) + (int)player.ActualHeight + 1) / 25);
             if (tmpy >= 1)
             {
                 tmpx1 += tmpy * 24;
@@ -225,36 +256,19 @@ namespace Slenderman
             return false;
         }
 
-        bool IsWallTop()
-        {
-            int tmpx = ((int)Canvas.GetLeft(player)) / 25;
-            int tmpy = (((int)Canvas.GetTop(player) + (int)player.ActualHeight + 1) / 25);
-            if (tmpy >= 1)
-            {
-                tmpx += tmpy * 24;
-            }
-            try
-            {
-                if (mymap.map[tmpx] == 1 || mymap.map[tmpx - 24] == 1)
-                {
-                    return true;
-                }
-            }
-            catch { }
-            return false;
-        }
-
         bool IsWallBottom()
         {
-            int tmpx = ((int)Canvas.GetLeft(player)) / 25;
+            int tmpx1 = ((int)Canvas.GetLeft(player)) / 25;
+            int tmpx2 = (((int)Canvas.GetLeft(player) + (int)player.ActualWidth) / 25);
             int tmpy = ((int)Canvas.GetTop(player) - 1) / 25;
             if (tmpy >= 1)
             {
-                tmpx += tmpy * 24;
+                tmpx1 += tmpy * 24;
+                tmpx2 += tmpy * 24;
             }
             try
             {
-                if (mymap.map[tmpx] == 1 || mymap.map[tmpx + 24] == 1)
+                if (mymap.map[tmpx1] == 1 || mymap.map[tmpx2] == 1)
                 {
                     return true;
                 }
