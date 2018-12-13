@@ -28,8 +28,6 @@ namespace Slenderman
             SetMap();
             player = new Player();
             player.Source = new BitmapImage(new Uri(@"Textures/player.png", UriKind.Relative));
-
-            player.OpacityMask =Brushes.Black;
             player.Height = 20;
             player.Width = 20;
             canvas.Children.Add(player);
