@@ -55,6 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Developers.xaml.cs">
+      <DependentUpon>Developers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Slender.cs" />
+    <Compile Include="StartMenu.xaml.cs">
+      <DependentUpon>StartMenu.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Developers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,6 +80,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="StartMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Map.cs" />
@@ -110,6 +125,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Textures\floor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Textures\slender.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Textures\Dev.ico" />
+    <Resource Include="Textures\End.jpg" />
+    <Resource Include="Textures\Man.ico" />
+    <Resource Include="Textures\Slender Man 2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

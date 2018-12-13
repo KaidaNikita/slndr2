@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,12 +22,41 @@ namespace Slenderman
     public partial class MainWindow : Window
     {
         Player player;
-    static Map mymap = new Map();
+        Slender slender;
+        System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
+        static Map mymap = new Map();
         List<int> map_ints = mymap.map;
+
         public MainWindow()
         {
             InitializeComponent();
             SetMap();
+            SetPlayer();
+            SetSlender();
+            timer.Tick += new EventHandler(Timer_tick);
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Start();
+        }
+
+        private void Timer_tick(object sender, EventArgs e)
+        {
+            // code goes here 
+        }
+
+        void SetSlender()
+        {
+            slender = new Slender();
+            slender.Source = new BitmapImage(new Uri(@"Textures/slender.jpg", UriKind.Relative));
+            slender.Height = 20;
+            slender.Width = 20;
+            slender.Tag = "slender";
+            canvas.Children.Add(slender);
+            Canvas.SetTop(slender, 200);
+            Canvas.SetLeft(slender, 200);
+        }
+        
+        void SetPlayer()
+        {
             player = new Player();
             player.Source = new BitmapImage(new Uri(@"Textures/player.png", UriKind.Relative));
             player.Height = 20;
@@ -34,10 +64,7 @@ namespace Slenderman
             canvas.Children.Add(player);
             Canvas.SetTop(player, 50);
             Canvas.SetLeft(player, 50);
- 
-           // papers.Content = "Count of letters" + player.count_of_papers.ToString() + "/3";
         }
-        
 
         void SetMap()
         {
@@ -66,6 +93,18 @@ namespace Slenderman
                     canvas.Children.Add(wall);
 
                 }
+                //if (map_ints[i] == 8)
+                //{
+                //    Image wall = new Image();
+                //    wall.Source = new BitmapImage(new Uri(@"Textures/slender.jpg", UriKind.Relative));
+                //    wall.Width = 25;
+                //    wall.Height = 25;
+
+                //    Canvas.SetTop(wall, y);
+                //    Canvas.SetLeft(wall, x);
+                //    canvas.Children.Add(wall);
+
+                //}
                 if (map_ints[i] == 0)
                 {
                     Image wall = new Image();

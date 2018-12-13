@@ -1,4 +1,4 @@
-﻿<Window KeyDown="Moving" x:Class="Slenderman.MainWindow"
+﻿<Window Name="main" Icon="Textures/slender.jpg" KeyDown="Moving" x:Class="Slenderman.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -15,7 +15,8 @@
 			<RowDefinition Height="26*"/>
 			<RowDefinition Height="393*"/>
 		</Grid.RowDefinitions>
-		<Label Name="papers" Foreground="Black">
+
+		<Label Background="#FF2E0906" Name="papers" Foreground="White">
 			Count of papers 0/3
 		</Label>
 		<Canvas Background="#FF2E0906"  Name="canvas" Grid.Row="1">
