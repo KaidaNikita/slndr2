@@ -21,7 +21,8 @@ namespace Slenderman
     public partial class MainWindow : Window
     {
         Player player;
-        Map mymap = new Map();
+    static Map mymap = new Map();
+        List<int> map_ints = mymap.map;
         public MainWindow()
         {
             InitializeComponent();
@@ -39,7 +40,7 @@ namespace Slenderman
 
         void SetMap()
         {
-                List<int> map_ints = mymap.map;
+                
             int x=0,y=0;
             for (int i = 0; i < map_ints.Count; i++)
             {
