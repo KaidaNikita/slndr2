@@ -15,7 +15,8 @@
 			<RowDefinition Height="26*"/>
 			<RowDefinition Height="393*"/>
 		</Grid.RowDefinitions>
-		<Label Name="papers" Foreground="Black">
+
+		<Label Background="#FF2E0906" Name="papers" Foreground="White">
 			Count of papers 0/3
 		</Label>
 		<Canvas Background="#FF2E0906"  Name="canvas" Grid.Row="1">
