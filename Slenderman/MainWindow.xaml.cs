@@ -32,6 +32,7 @@ namespace Slenderman
             InitializeComponent();
             SetMap();
             SetPlayer();
+            SetSlender();
             timer.Tick += new EventHandler(Timer_tick);
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
@@ -48,6 +49,7 @@ namespace Slenderman
             slender.Source = new BitmapImage(new Uri(@"Textures/slender.jpg", UriKind.Relative));
             slender.Height = 20;
             slender.Width = 20;
+            slender.Tag = "slender";
             canvas.Children.Add(slender);
             Canvas.SetTop(slender, 200);
             Canvas.SetLeft(slender, 200);
