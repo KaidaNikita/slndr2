@@ -36,14 +36,12 @@ namespace Slenderman
 
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Do you want to close this game?",
- "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Do you want to close this game?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                // Close the window  
+                this.Close();
             }
             else
-            {
-                // Do not close the window  
+            { 
             }
         }
         private void Button_Click3(object sender, RoutedEventArgs e)

@@ -25,9 +25,9 @@
 			<RowDefinition Height="120*"/>
 		</Grid.RowDefinitions>
 		<Button Grid.Column="1" Grid.Row="0" Content="Play" Background="Transparent" Foreground="LightGray"  FontSize="25"
-                Click="Button_Click" Height="Auto"/>
-		<Button Grid.Column="1" Grid.Row="1" Content="Help" Background="Transparent" Foreground="LightGray"  FontSize="25"
                 Click="Button_Click1" Height="Auto"/>
+		<Button Grid.Column="1" Grid.Row="1" Content="Help" Background="Transparent" Foreground="LightGray"  FontSize="25"
+                Click="Button_Click" Height="Auto"/>
 		<Button Grid.Column="1" Grid.Row="2" Content="Exit" Background="Transparent" Foreground="LightGray"  FontSize="25"
                 Click="Button_Click2" Height="Auto"/>
 		<Button Grid.Column="1" Grid.Row="3" Content="Developers" Background="Transparent" Foreground="LightGray"  FontSize="25"
