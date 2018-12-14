@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,13 +26,15 @@ namespace Slenderman
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Кнопка нажата");
+            Process.Start("chrome.exe",@"slnd/SlenderTheEightPage.html");
         }
 
         private void Button_Click1(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
-            main.Show();
+            Visibility = Visibility.Hidden;
+            main.ShowDialog();
+            Visibility = Visibility.Visible;
         }
 
         private void Button_Click2(object sender, RoutedEventArgs e)

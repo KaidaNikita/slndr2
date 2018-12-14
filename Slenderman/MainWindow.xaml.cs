@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Slenderman
 {
@@ -26,6 +27,7 @@ namespace Slenderman
         System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
         static Map mymap = new Map();
         List<int> map_ints = mymap.map;
+        bool Shift = true;
 
         public MainWindow()
         {
@@ -93,18 +95,6 @@ namespace Slenderman
                     canvas.Children.Add(wall);
 
                 }
-                //if (map_ints[i] == 8)
-                //{
-                //    Image wall = new Image();
-                //    wall.Source = new BitmapImage(new Uri(@"Textures/slender.jpg", UriKind.Relative));
-                //    wall.Width = 25;
-                //    wall.Height = 25;
-
-                //    Canvas.SetTop(wall, y);
-                //    Canvas.SetLeft(wall, x);
-                //    canvas.Children.Add(wall);
-
-                //}
                 if (map_ints[i] == 0)
                 {
                     Image wall = new Image();
@@ -185,8 +175,8 @@ namespace Slenderman
        
         bool IsWallRight()
         {
-            int tmpx1 = ((int)Canvas.GetLeft(player) + (int)player.ActualWidth + 1) / 25;
-            int tmpx2 = (int)((Canvas.GetLeft(player) + (int)player.ActualWidth - 1) / 25);
+            int tmpx1 = ((int)Canvas.GetLeft(player) + (int)player.ActualWidth + player.speed) / 25;
+            int tmpx2 = (int)((Canvas.GetLeft(player) + (int)player.ActualWidth + player.speed) / 25);
             int tmpy = ((int)Canvas.GetTop(player) / 25);
             int tmpy2 = ((int)Canvas.GetTop(player) + (int)player.ActualHeight) / 25;
             if (tmpy>=1)
@@ -211,8 +201,8 @@ namespace Slenderman
 
         bool IsWallLeft()
         {
-            int tmpx1 = ((int)Canvas.GetLeft(player) - 1) / 25;
-            int tmpx2 = (int)((Canvas.GetLeft(player) - 1) / 25);
+            int tmpx1 = ((int)Canvas.GetLeft(player) - 2*player.speed) / 25;
+            int tmpx2 = (int)((Canvas.GetLeft(player) - player.speed) / 25);
             int tmpy = ((int)Canvas.GetTop(player) / 25);
             int tmpy2 = ((int)Canvas.GetTop(player) + (int)player.ActualHeight) / 25;
             if (tmpy >= 1)
@@ -239,7 +229,7 @@ namespace Slenderman
         {
             int tmpx1 = ((int)Canvas.GetLeft(player)) / 25;
             int tmpx2 = (((int)Canvas.GetLeft(player) + (int)player.ActualWidth) / 25);
-            int tmpy = (((int)Canvas.GetTop(player) + (int)player.ActualHeight + 1) / 25);
+            int tmpy = (((int)Canvas.GetTop(player) + (int)player.ActualHeight + player.speed) / 25);
             if (tmpy >= 1)
             {
                 tmpx1 += tmpy * 24;
@@ -260,7 +250,7 @@ namespace Slenderman
         {
             int tmpx1 = ((int)Canvas.GetLeft(player)) / 25;
             int tmpx2 = (((int)Canvas.GetLeft(player) + (int)player.ActualWidth) / 25);
-            int tmpy = ((int)Canvas.GetTop(player) - 1) / 25;
+            int tmpy = ((int)Canvas.GetTop(player)-player.speed*2) / 25;
             if (tmpy >= 1)
             {
                 tmpx1 += tmpy * 24;
@@ -277,8 +267,70 @@ namespace Slenderman
             return false;
         }
 
+        void SpeederC(object sender, EventArgs e)
+        {
+            byte t = 1;
+            Speeder.Value -= 1;
+            if ((Speeder.Foreground as SolidColorBrush).Color.R < (byte)255)
+            {
+                Speeder.Foreground = new SolidColorBrush(Color.FromRgb((byte)((Speeder.Foreground as SolidColorBrush).Color.R + t), (Speeder.Foreground as SolidColorBrush).Color.G, (Speeder.Foreground as SolidColorBrush).Color.B));
+            }
+            if ((Speeder.Foreground as SolidColorBrush).Color.R == (byte)255)
+            {
+                Speeder.Foreground = new SolidColorBrush(Color.FromRgb((Speeder.Foreground as SolidColorBrush).Color.R, (byte)((Speeder.Foreground as SolidColorBrush).Color.G - t), (Speeder.Foreground as SolidColorBrush).Color.B));
+            }
+            if (Speeder.Value == 0)
+            {
+                (sender as DispatcherTimer).Stop();
+                Speeder.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                UpdateSpeeder();
+            }
+        }
+
+        void SpeederC1(object sender, EventArgs e)
+        {
+            byte t = 1;
+            Speeder.Value += 1;
+            if ((Speeder.Foreground as SolidColorBrush).Color.G < (byte)255)
+            {
+                Speeder.Foreground = new SolidColorBrush(Color.FromRgb((Speeder.Foreground as SolidColorBrush).Color.R, (byte)((Speeder.Foreground as SolidColorBrush).Color.G + t), (Speeder.Foreground as SolidColorBrush).Color.B));
+            }
+            if ((Speeder.Foreground as SolidColorBrush).Color.G == (byte)255)
+            {
+                Speeder.Foreground = new SolidColorBrush(Color.FromRgb((byte)((Speeder.Foreground as SolidColorBrush).Color.R - t), (Speeder.Foreground as SolidColorBrush).Color.G, (Speeder.Foreground as SolidColorBrush).Color.B));
+            }
+            
+            if (Speeder.Value == 510)
+            {
+                Speeder.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                (sender as DispatcherTimer).Stop();
+                Shift = true;
+            }
+        }
+
+        void UpdateSpeeder()
+        {
+            player.speed = 1;
+            DispatcherTimer dt = new DispatcherTimer();
+            dt.Interval = new TimeSpan(0, 0, 0, 0, (int)(16000 / 510));
+            dt.Tick += new EventHandler(SpeederC1);
+            dt.Start();
+        }
+
         private void Moving(object sender, KeyEventArgs e)
         {
+            if (Shift == true)
+            {
+                if (e.Key == System.Windows.Input.Key.LeftShift || e.Key == System.Windows.Input.Key.LeftShift)
+                {
+                    player.speed = 2;
+                    DispatcherTimer dt = new DispatcherTimer();
+                    dt.Interval = new TimeSpan(0, 0, 0, 0, (int)(8000 / 510));
+                    dt.Tick += new EventHandler(SpeederC);
+                    dt.Start();
+                    Shift = false;
+                }
+            }
             if (e.Key== System.Windows.Input.Key.E)
             { 
                 if(IsLetter())
@@ -311,21 +363,21 @@ namespace Slenderman
             {
                 if (!IsWallLeft())
                 {
-                    Canvas.SetLeft(player, Canvas.GetLeft(player) - 1);
+                    Canvas.SetLeft(player, Canvas.GetLeft(player) - player.speed);
                 }
             }
             if ((e.Key == System.Windows.Input.Key.D || e.Key == System.Windows.Input.Key.Right))
             {       
                 if (!IsWallRight())
                 {   
-                Canvas.SetLeft(player, Canvas.GetLeft(player) + 1);
+                Canvas.SetLeft(player, Canvas.GetLeft(player) + player.speed);
                 }
             }   
             if ((e.Key == System.Windows.Input.Key.W || e.Key == System.Windows.Input.Key.Up))
             {
                 if (!IsWallBottom())
                 {
-                    Canvas.SetTop(player, Canvas.GetTop(player) - 1);
+                    Canvas.SetTop(player, Canvas.GetTop(player) - player.speed);
                 }
                 
             }
@@ -333,7 +385,7 @@ namespace Slenderman
             {
                 if (!IsWallTop())
                 {
-                    Canvas.SetTop(player, Canvas.GetTop(player) + 1);
+                    Canvas.SetTop(player, Canvas.GetTop(player) + player.speed);
                 }
             }
         }

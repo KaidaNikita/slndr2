@@ -25,13 +25,13 @@
 			<RowDefinition Height="120*"/>
 		</Grid.RowDefinitions>
 		<Button Grid.Column="1" Grid.Row="0" Content="Play" Background="Transparent" Foreground="LightGray"  FontSize="25"
-                Click="Button_Click1" Height="Auto"/>
+                Click="Button_Click1" Height="Auto" Margin="0,8"/>
 		<Button Grid.Column="1" Grid.Row="1" Content="Help" Background="Transparent" Foreground="LightGray"  FontSize="25"
-                Click="Button_Click" Height="Auto"/>
+                Click="Button_Click" Height="Auto" Margin="0,8"/>
 		<Button Grid.Column="1" Grid.Row="2" Content="Exit" Background="Transparent" Foreground="LightGray"  FontSize="25"
-                Click="Button_Click2" Height="Auto"/>
+                Click="Button_Click2" Height="Auto" Margin="0,8"/>
 		<Button Grid.Column="1" Grid.Row="3" Content="Developers" Background="Transparent" Foreground="LightGray"  FontSize="25"
-                Click="Button_Click3" Height="Auto"/>
+                Click="Button_Click3" Height="Auto" Margin="0,8"/>
 
 	</Grid>
 </Window>
