@@ -26,7 +26,7 @@ namespace Slenderman
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("chrome.exe",@"slnd/SlenderTheEightPage.html");
+            Process.Start("chrome.exe", @"https://en.wikipedia.org/wiki/Slender_Man");
         }
 
         private void Button_Click1(object sender, RoutedEventArgs e)
