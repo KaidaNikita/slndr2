@@ -135,5 +135,8 @@
     <Resource Include="Textures\Man.ico" />
     <Resource Include="Textures\Slender Man 2.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Textures\finish.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

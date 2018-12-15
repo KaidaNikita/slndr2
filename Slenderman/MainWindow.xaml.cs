@@ -24,6 +24,7 @@ namespace Slenderman
     {
         Player player;
         Slender slender;
+        int weight_of_map = 49;
         System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
         static Map mymap = new Map();
         List<int> map_ints = mymap.map;
@@ -84,7 +85,7 @@ namespace Slenderman
                     if (i != 0)
                     {
                         x += 25;
-                        if (i % 24 == 0)
+                        if (i % weight_of_map == 0)
                         {
                             y += 25;
                             x = 0;
@@ -104,7 +105,7 @@ namespace Slenderman
                     if (i != 0)
                     {
                         x += 25;
-                        if (i % 24 == 0)
+                        if (i % weight_of_map == 0)
                         {
                             y += 25;
                             x = 0;
@@ -124,7 +125,7 @@ namespace Slenderman
                     if (i != 0)
                     {
                         x += 25;
-                        if (i % 24 == 0)
+                        if (i % weight_of_map == 0)
                         {
                             y += 25;
                             x = 0;
@@ -135,6 +136,35 @@ namespace Slenderman
                     canvas.Children.Add(wall);
                     Rectangle wall1 = new Rectangle();
                     ImageBrush temp = (ImageBrush)this.FindResource("let");
+                    temp.Stretch = Stretch.Uniform;
+                    wall1.Fill = temp;
+                    wall1.Width = 25;
+                    wall1.Height = 25;
+                    Canvas.SetTop(wall1, y);
+                    Canvas.SetLeft(wall1, x);
+                    canvas.Children.Add(wall1);
+
+                }
+                if (map_ints[i] == 5)
+                {
+                    Image wall = new Image();
+                    wall.Source = new BitmapImage(new Uri(@"Textures/floor.png", UriKind.Relative));
+                    wall.Width = 25;
+                    wall.Height = 25;
+                    if (i != 0)
+                    {
+                        x += 25;
+                        if (i % weight_of_map == 0)
+                        {
+                            y += 25;
+                            x = 0;
+                        }
+                    }
+                    Canvas.SetTop(wall, y);
+                    Canvas.SetLeft(wall, x);
+                    canvas.Children.Add(wall);
+                    Ellipse wall1 = new Ellipse();
+                    ImageBrush temp = (ImageBrush)this.FindResource("finish");
                     temp.Stretch = Stretch.Uniform;
                     wall1.Fill = temp;
                     wall1.Width = 25;
@@ -172,7 +202,32 @@ namespace Slenderman
             }
             return temp;
         }
-       
+
+
+        bool IsFinish()
+        {
+            bool temp = false;
+            foreach (var el in canvas.Children)
+            {
+                try
+                {
+                    Ellipse my_eliplse = (Ellipse)el;
+                    GeneralTransform t1 = my_eliplse.TransformToVisual(this);
+                    GeneralTransform t2 = player.TransformToVisual(this);
+                    Rect r1 = t1.TransformBounds(new Rect() { X = 0, Y = 0, Width = my_eliplse.ActualWidth, Height = my_eliplse.ActualHeight });
+                    Rect r2 = t2.TransformBounds(new Rect() { X = 0, Y = 0, Width = player.ActualWidth, Height = player.ActualHeight });
+                    bool result = r1.IntersectsWith(r2);
+                    if (result)
+                    {
+                        return true;
+                    }
+                }
+
+                catch { }
+            }
+            return temp;
+        }
+
         bool IsWallRight()
         {
             int tmpx1 = ((int)Canvas.GetLeft(player) + (int)player.ActualWidth + player.speed) / 25;
@@ -181,12 +236,12 @@ namespace Slenderman
             int tmpy2 = ((int)Canvas.GetTop(player) + (int)player.ActualHeight) / 25;
             if (tmpy>=1)
             {
-                tmpx1 += tmpy * 24;
+                tmpx1 += tmpy * weight_of_map;
             }
             if (tmpy2 >= 1)
             {
 
-                tmpx2 += tmpy2 * 24;
+                tmpx2 += tmpy2 * weight_of_map;
             }
             try
             {
@@ -207,12 +262,12 @@ namespace Slenderman
             int tmpy2 = ((int)Canvas.GetTop(player) + (int)player.ActualHeight) / 25;
             if (tmpy >= 1)
             {
-                tmpx1 += tmpy * 24;
+                tmpx1 += tmpy * weight_of_map;
             }
             if (tmpy2 >= 1)
             {
 
-                tmpx2 += tmpy2 * 24;
+                tmpx2 += tmpy2 * weight_of_map;
             }
             try
             {
@@ -232,8 +287,8 @@ namespace Slenderman
             int tmpy = (((int)Canvas.GetTop(player) + (int)player.ActualHeight + player.speed) / 25);
             if (tmpy >= 1)
             {
-                tmpx1 += tmpy * 24;
-                tmpx2 += tmpy * 24;
+                tmpx1 += tmpy * weight_of_map;
+                tmpx2 += tmpy * weight_of_map;
             }
             try
             {
@@ -253,8 +308,8 @@ namespace Slenderman
             int tmpy = ((int)Canvas.GetTop(player)-player.speed*2) / 25;
             if (tmpy >= 1)
             {
-                tmpx1 += tmpy * 24;
-                tmpx2 += tmpy * 24;
+                tmpx1 += tmpy * weight_of_map;
+                tmpx2 += tmpy * weight_of_map;
             }
             try
             {
@@ -356,7 +411,36 @@ namespace Slenderman
                         {}
                     } 
                 }
-          
+                if (IsFinish())
+                {
+                    for (int i = 0; i < canvas.Children.Count; i++)
+                    {
+                        try
+                        {
+                            Ellipse my_eliplse = (Ellipse)canvas.Children[i];
+                            GeneralTransform t1 = my_eliplse.TransformToVisual(this);
+                            GeneralTransform t2 = player.TransformToVisual(this);
+                            Rect r1 = t1.TransformBounds(new Rect() { X = 0, Y = 0, Width = my_eliplse.ActualWidth, Height = my_eliplse.ActualHeight });
+                            Rect r2 = t2.TransformBounds(new Rect() { X = 0, Y = 0, Width = player.ActualWidth, Height = player.ActualHeight });
+                            bool result = r1.IntersectsWith(r2);
+                            if (result)
+                            {
+                                if (player.count_of_papers>=3)
+                                {
+                                MessageBox.Show("You WIN");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("You must get "+(3-player.count_of_papers).ToString()+" more letters");
+                                }
+
+                            }
+                        }
+                        catch (Exception)
+                        { }
+                    }
+                }
+
             }
 
             if ((e.Key == System.Windows.Input.Key.A || e.Key == System.Windows.Input.Key.Left))

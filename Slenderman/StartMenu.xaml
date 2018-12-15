@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Slenderman"
         mc:Ignorable="d"
-        Title="StartMenu" Height="450" Width="800">
+        Title="SLENDER" Height="450" Width="800">
 	<Window.Background>
 		<ImageBrush ImageSource="Textures/Slender Man 2.jpg" Stretch="Fill">
 
@@ -28,9 +28,9 @@
                 Click="Button_Click1" Height="Auto" Margin="0,8"/>
 		<Button Grid.Column="1" Grid.Row="1" Content="Help" Background="Transparent" Foreground="LightGray"  FontSize="25"
                 Click="Button_Click" Height="Auto" Margin="0,8"/>
-		<Button Grid.Column="1" Grid.Row="2" Content="Exit" Background="Transparent" Foreground="LightGray"  FontSize="25"
+		<Button Grid.Column="1" Grid.Row="3" Content="Exit" Background="Transparent" Foreground="LightGray"  FontSize="25"
                 Click="Button_Click2" Height="Auto" Margin="0,8"/>
-		<Button Grid.Column="1" Grid.Row="3" Content="Developers" Background="Transparent" Foreground="LightGray"  FontSize="25"
+		<Button Grid.Column="1" Grid.Row="2" Content="Developers" Background="Transparent" Foreground="LightGray"  FontSize="25"
                 Click="Button_Click3" Height="Auto" Margin="0,8"/>
 
 	</Grid>
