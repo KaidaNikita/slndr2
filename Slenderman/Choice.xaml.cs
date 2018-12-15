@@ -19,24 +19,58 @@ namespace Slenderman
     /// </summary>
     public partial class Choice : Window
     {
+        int count=0;
         Map map = new Map();
-        public int x;
+        Random rnd = new Random();
         public Choice()
         {
             InitializeComponent();
         }
 
+        List<int> RandomLetters(List<int> maze)
+        {
+
+            for (int i = 0; i < maze.Count; i++)
+            {
+                int x = rnd.Next(1, 900);
+                if (maze[x]==0&& count<3)
+                {
+                    count++;
+                    maze[x] = 2;
+
+                }
+            }
+            if (count < 3)
+            {
+            for (int i = 0; i < maze.Count; i++)
+            {
+                if (maze[i] == 0 || maze[i] == 8 && count < 3)
+                {
+                    maze[i] = 2;
+                    count++;
+                }
+            }
+            }
+
+            //for (int i = 0; i < maze.Count; i++)
+            //{
+            //    if (maze[i]==2)
+            //    {
+            //       MessageBox.Show("2");
+            //    }
+            //}
+            return maze;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            x = 1;
-            MainWindow main = new MainWindow(map.map);
+            MainWindow main = new MainWindow(RandomLetters(map.map));
             main.Show();
           //  this.Close();
         }
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
-            x = 2;
-            MainWindow main = new MainWindow(map.forest);
+            MainWindow main = new MainWindow(RandomLetters(map.forest));
             main.map_ints = map.forest;
             main.Show();
            // this.Close();
