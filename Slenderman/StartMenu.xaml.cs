@@ -31,7 +31,7 @@ namespace Slenderman
 
         private void Button_Click1(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new MainWindow();
+            Choice main = new Choice();
             Visibility = Visibility.Hidden;
             main.ShowDialog();
             Visibility = Visibility.Visible;
@@ -51,49 +51,6 @@ namespace Slenderman
         {
             Developers developers = new Developers();
             developers.Show();
-        }
-
-        //<Button Content="Play"
-        // HorizontalAlignment="Left"
-        //         Margin="185,43,0,0"
-        //         VerticalAlignment="Top"
-        //         Background="Transparent"
-        //         Foreground="LightGray"
-        //         Width="167"
-        //         FontSize="25"
-        //         Click="Button_Click" Height="Auto">
-        // </Button>
-        // <Button Content = "Help"
-        //         HorizontalAlignment="Left"
-        //         Margin="185,143,0,0"
-        //         VerticalAlignment="Top"
-        //         Background="Transparent"
-        //         Foreground="LightGray"
-        //         Width="167"
-        //          FontSize="25"
-        //         Click="Button_Click1" Height="Auto">
-        //          </Button>
-
-        // <Button Content = "Exit"
-        //         HorizontalAlignment="Left"
-        //         Margin="185,243,0,0"
-        //         VerticalAlignment="Top"
-        //         Background="Transparent"
-        //         Foreground="LightGray"
-        //         Width="167"
-        //          FontSize="25"
-        //         Click="Button_Click2" Height="Auto">
-        // </Button>
-        // <Button Content = "Developers"
-        //         HorizontalAlignment="Left"
-        //         Margin="185,343,0,0"
-        //         VerticalAlignment="Top"
-        //         Background="Transparent"
-        //         Foreground="LightGray"
-        //         Width="167"
-        //          FontSize="25"
-        //         Click="Button_Click3" Height="Auto">
-        // </Button>
-
+        } 
     }
 }

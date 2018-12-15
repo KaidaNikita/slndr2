@@ -22,18 +22,19 @@ namespace Slenderman
     /// </summary>
     public partial class MainWindow : Window
     {
+       public List<int> map_ints; 
         Player player;
         Slender slender;
         int weight_of_map = 49;
         System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
         static Map mymap = new Map();
-        List<int> map_ints = mymap.map;
+
         bool Shift = true;
 
-        public MainWindow()
+        public MainWindow(List<int> map)
         {
             InitializeComponent();
-            SetMap();
+            SetMap(map);
             SetPlayer();
             SetSlender();
             timer.Tick += new EventHandler(Timer_tick);
@@ -69,9 +70,10 @@ namespace Slenderman
             Canvas.SetLeft(player, 50);
         }
 
-        void SetMap()
+        void SetMap(List<int> map)
         {
-                
+
+            map_ints = map;
             int x=0,y=0;
             for (int i = 0; i < map_ints.Count; i++)
             {
@@ -80,6 +82,46 @@ namespace Slenderman
                 {
                     Image wall = new Image();
                     wall.Source= new BitmapImage(new Uri(@"Textures/wall.png", UriKind.Relative));
+                    wall.Width = 25;
+                    wall.Height = 25;
+                    if (i != 0)
+                    {
+                        x += 25;
+                        if (i % weight_of_map == 0)
+                        {
+                            y += 25;
+                            x = 0;
+                        }
+                    }
+                    Canvas.SetTop(wall, y);
+                    Canvas.SetLeft(wall, x);
+                    canvas.Children.Add(wall);
+
+                }
+                if (map_ints[i] == 10)
+                {
+                    Image wall = new Image();
+                    wall.Source = new BitmapImage(new Uri(@"Textures/tree.png", UriKind.Relative));
+                    wall.Width = 25;
+                    wall.Height = 25;
+                    if (i != 0)
+                    {
+                        x += 25;
+                        if (i % weight_of_map == 0)
+                        {
+                            y += 25;
+                            x = 0;
+                        }
+                    }
+                    Canvas.SetTop(wall, y);
+                    Canvas.SetLeft(wall, x);
+                    canvas.Children.Add(wall);
+
+                }
+                if (map_ints[i] == 8)
+                {
+                    Image wall = new Image();
+                    wall.Source = new BitmapImage(new Uri(@"Textures/dirt.png", UriKind.Relative));
                     wall.Width = 25;
                     wall.Height = 25;
                     if (i != 0)
@@ -144,6 +186,45 @@ namespace Slenderman
                     Canvas.SetLeft(wall1, x);
                     canvas.Children.Add(wall1);
 
+                }
+                if (map_ints[i] == 3)
+                {
+                    Image wall = new Image();
+                    wall.Source = new BitmapImage(new Uri(@"Textures/red.png", UriKind.Relative));
+                    wall.Tag = "door";
+                    wall.Width = 25;
+                    wall.Height = 25;
+                    if (i != 0)
+                    {
+                        x += 25;
+                        if (i % weight_of_map == 0)
+                        {
+                            y += 25;
+                            x = 0;
+                        }
+                    }
+                    Canvas.SetTop(wall, y);
+                    Canvas.SetLeft(wall, x);
+                    canvas.Children.Add(wall);
+                }
+                if (map_ints[i] == -3)
+                {
+                    Image wall = new Image();
+                    wall.Source = new BitmapImage(new Uri(@"Textures/red_k.png", UriKind.Relative));
+                    wall.Width = 25;
+                    wall.Height = 25;
+                    if (i != 0)
+                    {
+                        x += 25;
+                        if (i % weight_of_map == 0)
+                        {
+                            y += 25;
+                            x = 0;
+                        }
+                    }
+                    Canvas.SetTop(wall, y);
+                    Canvas.SetLeft(wall, x);
+                    canvas.Children.Add(wall);
                 }
                 if (map_ints[i] == 5)
                 {
@@ -218,6 +299,30 @@ namespace Slenderman
                     Rect r2 = t2.TransformBounds(new Rect() { X = 0, Y = 0, Width = player.ActualWidth, Height = player.ActualHeight });
                     bool result = r1.IntersectsWith(r2);
                     if (result)
+                    {
+                        return true;
+                    }
+                }
+
+                catch { }
+            }
+            return temp;
+        }
+
+        bool IsDoor()
+        {
+            bool temp = false;
+            foreach (var el in canvas.Children)
+            {
+                try
+                {
+                    Image my_eliplse = (Image)el;
+                    GeneralTransform t1 = my_eliplse.TransformToVisual(this);
+                    GeneralTransform t2 = player.TransformToVisual(this);
+                    Rect r1 = t1.TransformBounds(new Rect() { X = 0, Y = 0, Width = my_eliplse.ActualWidth, Height = my_eliplse.ActualHeight });
+                    Rect r2 = t2.TransformBounds(new Rect() { X = 0, Y = 0, Width = player.ActualWidth, Height = player.ActualHeight });
+                    bool result = r1.IntersectsWith(r2);
+                    if (result&&my_eliplse.Tag=="door")
                     {
                         return true;
                     }
@@ -434,6 +539,27 @@ namespace Slenderman
                                     MessageBox.Show("You must get "+(3-player.count_of_papers).ToString()+" more letters");
                                 }
 
+                            }
+                        }
+                        catch (Exception)
+                        { }
+                    }
+                }
+                if (IsDoor())
+                {
+                    for (int i = 0; i < canvas.Children.Count; i++)
+                    {
+                        try
+                        {
+                            Image my_eliplse = (Image)canvas.Children[i];
+                            GeneralTransform t1 = my_eliplse.TransformToVisual(this);
+                            GeneralTransform t2 = player.TransformToVisual(this);
+                            Rect r1 = t1.TransformBounds(new Rect() { X = 0, Y = 0, Width = my_eliplse.ActualWidth, Height = my_eliplse.ActualHeight });
+                            Rect r2 = t2.TransformBounds(new Rect() { X = 0, Y = 0, Width = player.ActualWidth, Height = player.ActualHeight });
+                            bool result = r1.IntersectsWith(r2);
+                            if (result)
+                            {
+                                canvas.Children.RemoveAt(canvas.Children.IndexOf(my_eliplse));
                             }
                         }
                         catch (Exception)
