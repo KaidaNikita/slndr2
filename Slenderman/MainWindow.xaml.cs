@@ -26,8 +26,7 @@ namespace Slenderman
         Player player;
         Slender slender;
         int weight_of_map = 49;
-        System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-        static Map mymap = new Map();
+        DispatcherTimer timer = new DispatcherTimer();
 
         bool Shift = true;
 
@@ -350,7 +349,7 @@ namespace Slenderman
             }
             try
             {
-                if (mymap.map[tmpx1] == 1 || mymap.map[tmpx2] == 1)
+                if (map_ints[tmpx1] == 1 || map_ints[tmpx2] == 1 || map_ints[tmpx1] == 10 || map_ints[tmpx2] == 10)
                 {
                     return true;
                 }
@@ -376,7 +375,7 @@ namespace Slenderman
             }
             try
             {
-                if (mymap.map[tmpx1] == 1 || mymap.map[tmpx2] == 1)
+                if (map_ints[tmpx1] == 1 || map_ints[tmpx2] == 1 || map_ints[tmpx1] == 10 || map_ints[tmpx2] == 10)
                 {
                     return true;
                 }
@@ -397,7 +396,7 @@ namespace Slenderman
             }
             try
             {
-                if (mymap.map[tmpx1] == 1 || mymap.map[tmpx2] == 1)
+                if (map_ints[tmpx1] == 1 || map_ints[tmpx2] == 1 || map_ints[tmpx1] == 10 || map_ints[tmpx2] == 10)
                 {
                     return true;
                 }
@@ -418,7 +417,7 @@ namespace Slenderman
             }
             try
             {
-                if (mymap.map[tmpx1] == 1 || mymap.map[tmpx2] == 1)
+                if (map_ints[tmpx1] == 1 || map_ints[tmpx2] == 1 || map_ints[tmpx1] == 10 || map_ints[tmpx2] == 10)
                 {
                     return true;
                 }
