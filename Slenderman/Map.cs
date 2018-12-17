@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 
@@ -90,7 +91,7 @@ namespace Slenderman
 
         public Map()
         {
-            MapWidth = 24;
+            MapWidth = 49;
             MapHeight = map.Count / MapWidth;
         }
 
@@ -125,14 +126,18 @@ namespace Slenderman
                         if (cMap[x, y] == step)
                         {
                             //Ставим значение шага+1 в соседние ячейки (если они проходимы)
-                            if (y - 1 >= 0 && cMap[x - 1, y] != -2 && cMap[x - 1, y] == -1)
-                                cMap[x - 1, y] = step + 1;
-                            if (x - 1 >= 0 && cMap[x, y - 1] != -2 && cMap[x, y - 1] == -1)
-                                cMap[x, y - 1] = step + 1;
-                            if (y + 1 < MapWidth && cMap[x + 1, y] != -2 && cMap[x + 1, y] == -1)
-                                cMap[x + 1, y] = step + 1;
-                            if (x + 1 < MapHeight && cMap[x, y + 1] != -2 && cMap[x, y + 1] == -1)
-                                cMap[x, y + 1] = step + 1;
+                            try
+                            {
+                                if (y - 1 >= 0 && cMap[x - 1, y] != -2 && cMap[x - 1, y] == -1)
+                                    cMap[x - 1, y] = step + 1;
+                                if (x - 1 >= 0 && cMap[x, y - 1] != -2 && cMap[x, y - 1] == -1)
+                                    cMap[x, y - 1] = step + 1;
+                                if (y + 1 < MapWidth && cMap[x + 1, y] != -2 && cMap[x + 1, y] == -1)
+                                    cMap[x + 1, y] = step + 1;
+                                if (x + 1 < MapHeight && cMap[x, y + 1] != -2 && cMap[x, y + 1] == -1)
+                                    cMap[x, y + 1] = step + 1;
+                            }
+                            catch { }
                         }
                     }
                 step++;

@@ -65,15 +65,17 @@ namespace Slenderman
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow(RandomLetters(map.map));
-            main.Show();
-          //  this.Close();
+            Visibility = Visibility.Hidden;
+            main.ShowDialog();
+            Visibility = Visibility.Visible;
         }
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow(RandomLetters(map.forest));
             main.map_ints = map.forest;
-            main.Show();
-           // this.Close();
+            Visibility = Visibility.Hidden;
+            main.ShowDialog();
+            Visibility = Visibility.Visible;
         }
     }
 }

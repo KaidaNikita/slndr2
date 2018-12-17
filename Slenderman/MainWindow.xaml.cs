@@ -28,8 +28,6 @@ namespace Slenderman
         DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
         DispatcherTimer dts = new DispatcherTimer();
         static Map mymap = new Map();
-        int weight_of_map = 49;
-        DispatcherTimer timer = new DispatcherTimer();
 
         bool Shift = true;
 
@@ -172,7 +170,7 @@ namespace Slenderman
                     if (i != 0)
                     {
                         x += 25;
-                        if (i % weight_of_map == 0)
+                        if (i % mymap.MapWidth == 0)
                         {
                             y += 25;
                             x = 0;
@@ -192,7 +190,7 @@ namespace Slenderman
                     if (i != 0)
                     {
                         x += 25;
-                        if (i % weight_of_map == 0)
+                        if (i % mymap.MapWidth == 0)
                         {
                             y += 25;
                             x = 0;
@@ -212,7 +210,7 @@ namespace Slenderman
                     if (i != 0)
                     {
                         x += 25;
-                        if (i % weight_of_map == 0)
+                        if (i % mymap.MapWidth == 0)
                         {
                             y += 25;
                             x = 0;
@@ -232,7 +230,7 @@ namespace Slenderman
                     if (i != 0)
                     {
                         x += 25;
-                        if (i % weight_of_map == 0)
+                        if (i % mymap.MapWidth == 0)
                         {
                             y += 25;
                             x = 0;
@@ -252,7 +250,7 @@ namespace Slenderman
                     if (i != 0)
                     {
                         x += 25;
-                        if (i % weight_of_map == 0)
+                        if (i % mymap.MapWidth == 0)
                         {
                             y += 25;
                             x = 0;
@@ -282,7 +280,7 @@ namespace Slenderman
                     if (i != 0)
                     {
                         x += 25;
-                        if (i % weight_of_map == 0)
+                        if (i % mymap.MapWidth == 0)
                         {
                             y += 25;
                             x = 0;
@@ -302,7 +300,7 @@ namespace Slenderman
                     if (i != 0)
                     {
                         x += 25;
-                        if (i % weight_of_map == 0)
+                        if (i % mymap.MapWidth == 0)
                         {
                             y += 25;
                             x = 0;
@@ -321,7 +319,7 @@ namespace Slenderman
                     if (i != 0)
                     {
                         x += 25;
-                        if (i % weight_of_map == 0)
+                        if (i % mymap.MapWidth == 0)
                         {
                             y += 25;
                             x = 0;
@@ -408,7 +406,7 @@ namespace Slenderman
                     Rect r1 = t1.TransformBounds(new Rect() { X = 0, Y = 0, Width = my_eliplse.ActualWidth, Height = my_eliplse.ActualHeight });
                     Rect r2 = t2.TransformBounds(new Rect() { X = 0, Y = 0, Width = player.ActualWidth, Height = player.ActualHeight });
                     bool result = r1.IntersectsWith(r2);
-                    if (result && my_eliplse.Tag == "door")
+                    if (result && my_eliplse.Tag.ToString() == "door")
                     {
                         return true;
                     }
@@ -431,7 +429,7 @@ namespace Slenderman
                     Rect r1 = t1.TransformBounds(new Rect() { X = 0, Y = 0, Width = my_eliplse.ActualWidth, Height = my_eliplse.ActualHeight });
                     Rect r2 = t2.TransformBounds(new Rect() { X = 0, Y = 0, Width = player.ActualWidth, Height = player.ActualHeight });
                     bool result = r1.IntersectsWith(r2);
-                    if (result && my_eliplse.Tag == "key")
+                    if (result && my_eliplse.Tag.ToString() == "key")
                     {
                         return true;
                     }
@@ -450,12 +448,12 @@ namespace Slenderman
             int tmpy2 = ((int)Canvas.GetTop(player) + (int)player.ActualHeight) / 25;
             if (tmpy >= 1)
             {
-                tmpx1 += tmpy * weight_of_map;
+                tmpx1 += tmpy * mymap.MapWidth;
             }
             if (tmpy2 >= 1)
             {
 
-                tmpx2 += tmpy2 * weight_of_map;
+                tmpx2 += tmpy2 * mymap.MapWidth;
             }
             try
             {
@@ -476,12 +474,12 @@ namespace Slenderman
             int tmpy2 = ((int)Canvas.GetTop(player) + (int)player.ActualHeight) / 25;
             if (tmpy >= 1)
             {
-                tmpx1 += tmpy * weight_of_map;
+                tmpx1 += tmpy * mymap.MapWidth;
             }
             if (tmpy2 >= 1)
             {
 
-                tmpx2 += tmpy2 * weight_of_map;
+                tmpx2 += tmpy2 * mymap.MapWidth;
             }
             try
             {
@@ -501,8 +499,8 @@ namespace Slenderman
             int tmpy = (((int)Canvas.GetTop(player) + (int)player.ActualHeight + player.speed) / 25);
             if (tmpy >= 1)
             {
-                tmpx1 += tmpy * weight_of_map;
-                tmpx2 += tmpy * weight_of_map;
+                tmpx1 += tmpy * mymap.MapWidth;
+                tmpx2 += tmpy * mymap.MapWidth;
             }
             try
             {
@@ -522,8 +520,8 @@ namespace Slenderman
             int tmpy = ((int)Canvas.GetTop(player) - player.speed * 2) / 25;
             if (tmpy >= 1)
             {
-                tmpx1 += tmpy * weight_of_map;
-                tmpx2 += tmpy * weight_of_map;
+                tmpx1 += tmpy * mymap.MapWidth;
+                tmpx2 += tmpy * mymap.MapWidth;
             }
             try
             {
@@ -613,7 +611,7 @@ namespace Slenderman
                         Rect r1 = t1.TransformBounds(new Rect() { X = 0, Y = 0, Width = my_eliplse.ActualWidth, Height = my_eliplse.ActualHeight });
                         Rect r2 = t2.TransformBounds(new Rect() { X = 0, Y = 0, Width = player.ActualWidth, Height = player.ActualHeight });
                         bool result = r1.IntersectsWith(r2);
-                        if (result && my_eliplse.Tag == "key")
+                        if (result && my_eliplse.Tag.ToString() == "key")
                         {
                             canvas.Children.RemoveAt(canvas.Children.IndexOf(my_eliplse));
                             player.key = true;
@@ -638,7 +636,7 @@ namespace Slenderman
                             Rect r1 = t1.TransformBounds(new Rect() { X = 0, Y = 0, Width = my_eliplse.ActualWidth, Height = my_eliplse.ActualHeight });
                             Rect r2 = t2.TransformBounds(new Rect() { X = 0, Y = 0, Width = player.ActualWidth, Height = player.ActualHeight });
                             bool result = r1.IntersectsWith(r2);
-                            if (result && my_eliplse.Tag == "door" && player.key)
+                            if (result && my_eliplse.Tag.ToString() == "door" && player.key)
                             {
                                 canvas.Children.RemoveAt(canvas.Children.IndexOf(my_eliplse));
                             }
@@ -711,7 +709,7 @@ namespace Slenderman
                                 Rect r1 = t1.TransformBounds(new Rect() { X = 0, Y = 0, Width = my_eliplse.ActualWidth, Height = my_eliplse.ActualHeight });
                                 Rect r2 = t2.TransformBounds(new Rect() { X = 0, Y = 0, Width = player.ActualWidth, Height = player.ActualHeight });
                                 bool result = r1.IntersectsWith(r2);
-                                if (result && my_eliplse.Tag == "door" && player.key)
+                                if (result && my_eliplse.Tag.ToString() == "door" && player.key)
                                 {
                                     canvas.Children.RemoveAt(canvas.Children.IndexOf(my_eliplse));
                                 }
