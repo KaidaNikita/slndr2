@@ -34,7 +34,7 @@ namespace Slenderman
 
         private void Button_Click1(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new MainWindow();
+            Choice main = new Choice();
             Visibility = Visibility.Hidden;
             main.ShowDialog();
             Visibility = Visibility.Visible;

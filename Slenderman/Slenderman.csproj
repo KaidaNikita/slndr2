@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Choice.xaml.cs">
+      <DependentUpon>Choice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Developers.xaml.cs">
       <DependentUpon>Developers.xaml</DependentUpon>
     </Compile>
@@ -62,6 +65,10 @@
     <Compile Include="StartMenu.xaml.cs">
       <DependentUpon>StartMenu.xaml</DependentUpon>
     </Compile>
+    <Page Include="Choice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Developers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -81,8 +88,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="StartMenu.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +141,27 @@
     <Resource Include="Textures\End.jpg" />
     <Resource Include="Textures\Man.ico" />
     <Resource Include="Textures\Slender Man 2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Textures\finish.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Textures\tree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Textures\dirt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Textures\yellow.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Textures\green.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Textures\red_k.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Textures\red.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
