@@ -27,9 +27,7 @@ namespace Slenderman
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            FileStream fs = new FileStream(@"slnd/SlenderTheEightPage.html", FileMode.Open, FileAccess.Read);
-            Process.Start("chrome.exe",fs.Name);
-            fs.Close();
+            Process.Start("chrome.exe", "https://en.wikipedia.org/wiki/Slender_Man");
         }
 
         private void Button_Click1(object sender, RoutedEventArgs e)

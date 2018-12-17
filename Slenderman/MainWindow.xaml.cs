@@ -66,6 +66,8 @@ namespace Slenderman
         }
         private void Timer_tick(object sender, EventArgs e)
         {
+            slender.speedX += 10;
+            slender.speedY += 10;
             dts.Stop();
             dts.Tick -= new EventHandler(LeftS);
             dts.Tick -= new EventHandler(RightS);
@@ -110,14 +112,14 @@ namespace Slenderman
                         {
                             if (sX > x)
                             {
-                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 10);
+                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / slender.speedX);
                                 dts.Tick += new EventHandler(LeftS);
                                 dts.Start();
 
                             }
                             if (sX < x)
                             {
-                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 10);
+                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / slender.speedX);
                                 dts.Tick += new EventHandler(RightS);
                                 dts.Start();
 
@@ -128,14 +130,14 @@ namespace Slenderman
                         {
                             if (sY < y)
                             {
-                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 10);
+                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / slender.speedY);
                                 dts.Tick += new EventHandler(DownS);
                                 dts.Start();
 
                             }
                             if (sY > y && sX == x)
                             {
-                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 10);
+                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / slender.speedY);
                                 dts.Tick += new EventHandler(UpS);
                                 dts.Start();
 
