@@ -24,9 +24,9 @@ namespace Slenderman
     {
         Player player;
         Slender slender;
-        System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
+        DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
+        DispatcherTimer dts = new DispatcherTimer();
         static Map mymap = new Map();
-        List<int> map_ints = mymap.map;
         bool Shift = true;
 
         public MainWindow()
@@ -42,7 +42,90 @@ namespace Slenderman
 
         private void Timer_tick(object sender, EventArgs e)
         {
-            // code goes here 
+            dts.Stop();
+            dts.Tick -= new EventHandler(LeftS);
+            dts.Tick -= new EventHandler(RightS);
+            dts.Tick -= new EventHandler(UpS);
+            dts.Tick -= new EventHandler(DownS);
+            int tmpx1 = ((int)Canvas.GetLeft(player) / 25);
+            int tmpy1 = ((int)Canvas.GetTop(player) / 25);
+            int tmpx2 = ((int)Canvas.GetLeft(slender) / 25);
+            int tmpy2 = ((int)Canvas.GetTop(slender) / 25);
+            Tuple<string[,],int> maptemp = mymap.FindWave(tmpx2, tmpy2, tmpx1, tmpy1);
+            int sY=0;
+            int sX=0;
+            for (int y = 0; y < mymap.MapHeight; y++)
+            {
+                for (int x = 0; x < mymap.MapWidth; x++)
+                {
+                    if (maptemp.Item1[y,x] == " S ")
+                    {
+                        sY = y;
+                        sX = x;
+                    }
+                }
+            }
+            for (int y = 0; y < mymap.MapHeight; y++)
+            {
+                for (int x = 0; x < mymap.MapWidth; x++)
+                {
+                    if (maptemp.Item1[y, x] == (" " + (maptemp.Item2 - 1).ToString() + " "))
+                    {
+                        if (sY == y)
+                        {
+                            if (sX > x)
+                            {
+                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 25);
+                                dts.Tick += new EventHandler(LeftS);
+                                dts.Start();
+
+                            }
+                            if (sX < x)
+                            {
+                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 25);
+                                dts.Tick += new EventHandler(RightS);
+                                dts.Start();
+
+                            }
+                        }
+                        else
+                        if (sX == x)
+                        {
+                            if (sY < y)
+                            {
+                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 25);
+                                dts.Tick += new EventHandler(DownS);
+                                dts.Start();
+
+                            }
+                            if (sY > y && sX == x)
+                            {
+                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 25);
+                                dts.Tick += new EventHandler(UpS);
+                                dts.Start();
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        void DownS(object sender, EventArgs e)
+        {
+            Canvas.SetTop(slender, Canvas.GetTop(slender) + 1);
+        }
+        void UpS(object sender, EventArgs e)
+        {
+            Canvas.SetTop(slender, Canvas.GetTop(slender) - 1);
+        }
+        void LeftS(object sender, EventArgs e)
+        {
+            Canvas.SetLeft(slender, Canvas.GetLeft(slender) - 1);
+        }
+        void RightS(object sender, EventArgs e)
+        {
+            Canvas.SetLeft(slender, Canvas.GetLeft(slender) + 1);
         }
 
         void SetSlender()
@@ -53,7 +136,7 @@ namespace Slenderman
             slender.Width = 20;
             slender.Tag = "slender";
             canvas.Children.Add(slender);
-            Canvas.SetTop(slender, 200);
+            Canvas.SetTop(slender, 100);
             Canvas.SetLeft(slender, 200);
         }
         
@@ -72,10 +155,10 @@ namespace Slenderman
         {
                 
             int x=0,y=0;
-            for (int i = 0; i < map_ints.Count; i++)
+            for (int i = 0; i < mymap.map.Count; i++)
             {
                 
-                if (map_ints[i] == 1)
+                if (mymap.map[i] == 1)
                 {
                     Image wall = new Image();
                     wall.Source= new BitmapImage(new Uri(@"Textures/wall.png", UriKind.Relative));
@@ -95,7 +178,7 @@ namespace Slenderman
                     canvas.Children.Add(wall);
 
                 }
-                if (map_ints[i] == 0)
+                if (mymap.map[i] == 0)
                 {
                     Image wall = new Image();
                     wall.Source = new BitmapImage(new Uri(@"Textures/floor.png", UriKind.Relative));
@@ -115,7 +198,7 @@ namespace Slenderman
                     canvas.Children.Add(wall);
 
                 }
-                if (map_ints[i] == 2)
+                if (mymap.map[i] == 2)
                 {
                     Image wall = new Image();
                     wall.Source = new BitmapImage(new Uri(@"Textures/floor.png", UriKind.Relative));
@@ -225,7 +308,7 @@ namespace Slenderman
             return false;
         }
 
-        bool IsWallTop()
+        bool IsWallBottom()
         {
             int tmpx1 = ((int)Canvas.GetLeft(player)) / 25;
             int tmpx2 = (((int)Canvas.GetLeft(player) + (int)player.ActualWidth) / 25);
@@ -246,7 +329,7 @@ namespace Slenderman
             return false;
         }
 
-        bool IsWallBottom()
+        bool IsWallTop()
         {
             int tmpx1 = ((int)Canvas.GetLeft(player)) / 25;
             int tmpx2 = (((int)Canvas.GetLeft(player) + (int)player.ActualWidth) / 25);
@@ -369,13 +452,13 @@ namespace Slenderman
             if ((e.Key == System.Windows.Input.Key.D || e.Key == System.Windows.Input.Key.Right))
             {       
                 if (!IsWallRight())
-                {   
-                Canvas.SetLeft(player, Canvas.GetLeft(player) + player.speed);
+                {
+                    Canvas.SetLeft(player, Canvas.GetLeft(player) + player.speed);
                 }
             }   
             if ((e.Key == System.Windows.Input.Key.W || e.Key == System.Windows.Input.Key.Up))
             {
-                if (!IsWallBottom())
+                if (!IsWallTop())
                 {
                     Canvas.SetTop(player, Canvas.GetTop(player) - player.speed);
                 }
@@ -383,7 +466,7 @@ namespace Slenderman
             }
             if ((e.Key == System.Windows.Input.Key.S || e.Key == System.Windows.Input.Key.Down))
             {
-                if (!IsWallTop())
+                if (!IsWallBottom())
                 {
                     Canvas.SetTop(player, Canvas.GetTop(player) + player.speed);
                 }

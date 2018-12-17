@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Slenderman"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="716">
     <Window.Resources>
         <ImageBrush x:Key="let" ImageSource="Textures/letter.jpg">
         </ImageBrush>
@@ -24,10 +24,10 @@
             <Label Background="#FF2E0906" Name="papers" Foreground="White">
                 Count of papers 0/3
             </Label>
-            <Label Background="#FF2E0906" Grid.Column="1" Foreground="White" Margin="100,0,0,0">
+            <Label Background="#FF2E0906" Grid.Column="1" Foreground="White" Margin="70,0,0,0">
                 Speed boost:
             </Label>
-            <ProgressBar Minimum="0" Maximum="510" Value="510" Grid.Column="2" Margin="4,4,350,4" Name="Speeder" Foreground="#FF00FF0C" Background="Black"/>
+            <ProgressBar Minimum="0" Maximum="510" Value="510" Grid.Column="2" Margin="4,4,300,4" Name="Speeder" Foreground="#FF00FF0C" Background="Black"/>
         </Grid>
         <Canvas Background="#FF2E0906"  Name="canvas" Grid.Row="1">
 

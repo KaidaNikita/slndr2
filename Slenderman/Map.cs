@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace Slenderman
 {
@@ -28,41 +31,41 @@ namespace Slenderman
                                               1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
         };
 
-        int MapHeight;
-        int MapWidht;
+        public int MapHeight;
+        public int MapWidth;
 
         public Map()
         {
-            MapWidht = 24;
-            MapHeight = map.Count / MapWidht;
+            MapWidth = 24;
+            MapHeight = map.Count / MapWidth;
         }
 
-        public void FindWave(int startX, int startY, int targetX, int targetY)
+        public Tuple<string[,],int> FindWave(int startX, int startY, int targetX, int targetY)
         {
-            int[,] Map=new int[MapHeight,MapWidht];
+            int[,] Map=new int[MapHeight,MapWidth];
             for (int i = 0; i < MapHeight; i++)
             {
-                for (int j = 0; j < MapWidht; j++)
+                for (int j = 0; j < MapWidth; j++)
                 {
                     Map[i, j] = map[i * 24 + j];
                 }
             }
             bool add = true;
-            int[,] cMap = new int[MapHeight, MapWidht];
+            int[,] cMap = new int[MapHeight, MapWidth];
             int x, y, step = 0;
             for (y = 0; y < MapHeight; y++)
-                for (x = 0; x < MapWidht; x++)
+                for (x = 0; x < MapWidth; x++)
                 {
                     if (Map[y, x] == 1)
-                        cMap[y, x] = -2;//индикатор стены
+                        cMap[y, x] = -2;
                     else
-                        cMap[y, x] = -1;//индикатор еще не ступали сюда
+                        cMap[y, x] = -1;
                 }
-            cMap[targetY, targetX] = 0;//Начинаем с финиша
+            cMap[targetY, targetX] = 0;
             while (add == true)
             {
                 add = false;
-                for (y = 0; y < MapWidht; y++)
+                for (y = 0; y < MapWidth; y++)
                     for (x = 0; x < MapHeight; x++)
                     {
                         if (cMap[x, y] == step)
@@ -72,7 +75,7 @@ namespace Slenderman
                                 cMap[x - 1, y] = step + 1;
                             if (x - 1 >= 0 && cMap[x, y - 1] != -2 && cMap[x, y - 1] == -1)
                                 cMap[x, y - 1] = step + 1;
-                            if (y + 1 < MapWidht && cMap[x + 1, y] != -2 && cMap[x + 1, y] == -1)
+                            if (y + 1 < MapWidth && cMap[x + 1, y] != -2 && cMap[x + 1, y] == -1)
                                 cMap[x + 1, y] = step + 1;
                             if (x + 1 < MapHeight && cMap[x, y + 1] != -2 && cMap[x, y + 1] == -1)
                                 cMap[x, y + 1] = step + 1;
@@ -82,31 +85,34 @@ namespace Slenderman
                 add = true;
                 if (cMap[startY, startX] != -1)//решение найдено
                     add = false;
-                if (step > MapWidht * MapHeight)//решение не найдено
+                if (step > MapWidth * MapHeight)//решение не найдено
                     add = false;
             }
             //Отрисовываем карты
+            string[,] tMap = new string[MapHeight, MapWidth];
             for (y = 0; y < MapHeight; y++)
             {
-                Console.WriteLine();
-                for (x = 0; x < MapWidht; x++)
-                    if (cMap[y, x] == -1)
-                        Console.Write(" ");
-                    else
-                    if (cMap[y, x] == -2)
-                        Console.Write("#");
-                    else
-                    if (y == startY && x == startX)
-                        Console.Write("S");
-                    else
-                    if (y == targetY && x == targetX)
-                        Console.Write("F");
-                    else
-                    if (cMap[y, x] > -1)
-                        Console.Write("{0}", cMap[y, x]);
 
+                for (x = 0; x < MapWidth; x++)
+                {
+                    if (cMap[y, x] == -1)
+                        tMap[y, x] = " _ ";
+                    else
+                     if (cMap[y, x] == -2)
+                        tMap[y, x] = " # ";
+                    else
+                     if (y == startY && x == startX)
+                        tMap[y, x] = " S ";
+                    else
+                     if (y == targetY && x == targetX)
+                        tMap[y, x] = " F ";
+                    else
+                     if (cMap[y, x] > -1)
+                        tMap[y,x] = " "+cMap[y,x].ToString()+" ";
+                }
             }
-            Console.ReadKey();
+            //return tMap;
+            return Tuple.Create(tMap, step);
         }
     }
 }

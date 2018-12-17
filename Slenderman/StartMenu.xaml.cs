@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,9 @@ namespace Slenderman
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("chrome.exe",@"slnd/SlenderTheEightPage.html");
+            FileStream fs = new FileStream(@"slnd/SlenderTheEightPage.html", FileMode.Open, FileAccess.Read);
+            Process.Start("chrome.exe",fs.Name);
+            fs.Close();
         }
 
         private void Button_Click1(object sender, RoutedEventArgs e)
@@ -50,7 +53,9 @@ namespace Slenderman
         private void Button_Click3(object sender, RoutedEventArgs e)
         {
             Developers developers = new Developers();
-            developers.Show();
+            Visibility = Visibility.Hidden;
+            developers.ShowDialog();
+            Visibility = Visibility.Visible;
         }
 
         //<Button Content="Play"
