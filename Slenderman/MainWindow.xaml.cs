@@ -24,7 +24,7 @@ namespace Slenderman
     public partial class MainWindow : Window
     {
         public List<int> map_ints;
-        private MediaPlayer _mpBgr;
+        private MediaPlayer mediaPlayer;
         Player player;
         Slender slender;
         DispatcherTimer timer = new DispatcherTimer();
@@ -36,10 +36,7 @@ namespace Slenderman
         public MainWindow(List<int> map)
         {
             InitializeComponent();
-            //_mpBgr = new MediaPlayer();
-            //_mpBgr.Open(new Uri(@"Sounds\Main_sound.mp3", UriKind.RelativeOrAbsolute));
-            //_mpBgr.Play();
-           // media1.Play();
+            SoundPlay();
             SetMap(map);
             SetPlayer();
             SetSlender();
@@ -49,8 +46,20 @@ namespace Slenderman
             timer.Start();
         }
 
+        void SoundPlay()
+        {
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.Open(new Uri(@"C:\Users\nickkaida\Desktop\Slender-master\slndr2\Slenderman\Sounds\Main_sound.mp3", UriKind.RelativeOrAbsolute));
+            mediaPlayer.Volume = 1;
+            mediaPlayer.Play();
+        }
 
-        private void Timer_tick(object sender, EventArgs e)
+        public void Letter_Click(object sender, EventArgs e)
+        {
+            Letter letter = new Letter();
+            letter.ShowDialog();
+        }
+            private void Timer_tick(object sender, EventArgs e)
         {
             dts.Stop();
             dts.Tick -= new EventHandler(LeftS);
@@ -146,8 +155,8 @@ namespace Slenderman
             slender.Width = 20;
             slender.Tag = "slender";
             canvas.Children.Add(slender);
-            Canvas.SetTop(slender, 100);
-            Canvas.SetLeft(slender, 200);
+            Canvas.SetTop(slender, 500);
+            Canvas.SetLeft(slender, 500);
         }
 
         void SetPlayer()

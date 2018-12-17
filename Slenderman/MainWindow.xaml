@@ -45,10 +45,11 @@
 		<!--<MediaElement x:Name="media1" Source="Sounds\Main_sound.mp3" LoadedBehavior="Manual" Grid.Row="2" Grid.ColumnSpan="6"/>-->
 		<Canvas Background="#FF2E0906"  Name="canvas" Grid.Row="1" Grid.ColumnSpan="6" >
 		</Canvas>
-		<Image Visibility="Collapsed" Name="lt1" Source="Textures\letter.jpg" Grid.Row="2" Grid.Column="0" Stretch="Uniform" ></Image>
-		<Image Visibility="Collapsed" Name="lt2" Source="Textures\letter.jpg" Grid.Row="2" Grid.Column="1" Stretch="Uniform" ></Image>
-		<Image Visibility="Collapsed" Name="lt3" Source="Textures\letter.jpg" Grid.Row="2" Grid.Column="2" Stretch="Uniform" ></Image>
-		<Image Visibility="Collapsed" Name="key" Source="Textures\red_k.png" Grid.Row="2" Grid.Column="3" Stretch="Uniform" ></Image>
+
+		<Image MouseDown="Letter_Click" Visibility="Collapsed" Name="lt1" Source="Textures\letter.jpg" Grid.Row="2" Grid.Column="0" Stretch="Uniform" ></Image>
+		<Image MouseDown="Letter_Click" Visibility="Collapsed" Name="lt2" Source="Textures\letter.jpg" Grid.Row="2" Grid.Column="1" Stretch="Uniform" ></Image>
+		<Image MouseDown="Letter_Click" Visibility="Collapsed" Name="lt3" Source="Textures\letter.jpg" Grid.Row="2" Grid.Column="2" Stretch="Uniform" ></Image>
+		<Image MouseDown="Letter_Click" Visibility="Collapsed" Name="key" Source="Textures\red_k.png" Grid.Row="2" Grid.Column="3" Stretch="Uniform" ></Image>
 
 	</Grid>
 

@@ -61,6 +61,9 @@
     <Compile Include="Developers.xaml.cs">
       <DependentUpon>Developers.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Letter.xaml.cs">
+      <DependentUpon>Letter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Slender.cs" />
     <Compile Include="StartMenu.xaml.cs">
       <DependentUpon>StartMenu.xaml</DependentUpon>
@@ -70,6 +73,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Developers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Letter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
