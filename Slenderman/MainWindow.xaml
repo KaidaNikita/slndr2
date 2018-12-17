@@ -6,33 +6,50 @@
         xmlns:local="clr-namespace:Slenderman"
         mc:Ignorable="d"
         Title="MainWindow" Height="1300" Width="1300">
-    <Window.Resources>
-        <ImageBrush x:Key="let" ImageSource="Textures/letter.jpg">
-        </ImageBrush>
-        <ImageBrush x:Key="finish" ImageSource="Textures/finish.png">
-        </ImageBrush>
-    </Window.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="1240*"/>
-        </Grid.RowDefinitions>
-        <Grid Background="#FF2E0906">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="251*"/>
-                <ColumnDefinition Width="186*"/>
-                <ColumnDefinition Width="855*"/>
-            </Grid.ColumnDefinitions>
-            <Label Background="#FF2E0906" Name="papers" Foreground="White" VerticalContentAlignment="Top">
-                Count of papers 0/3
-            </Label>
-            <Label Background="#FF2E0906" Grid.Column="1" Foreground="White" Margin="100,0,0,0" VerticalContentAlignment="Top">
-                Speed boost:
-            </Label>
-            <ProgressBar Minimum="0" Maximum="510" Value="510" Grid.Column="2" Margin="4,4,350,4" Name="Speeder" Foreground="#FF00FF0C" Background="Black"/>
-        </Grid>
-        <Canvas Background="#FF2E0906"  Name="canvas" Grid.Row="1">
-        </Canvas>
-    </Grid>
+	<Window.Resources>
+		<ImageBrush x:Key="let" ImageSource="Textures/letter.jpg">
+		</ImageBrush>
+		<ImageBrush x:Key="finish" ImageSource="Textures/finish.png">
+		</ImageBrush>
+	</Window.Resources>
+	<Grid  Background="#FF2E0906" >
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="29*"/>
+			<RowDefinition Height="1162*"/>
+			<RowDefinition Height="44*"/>
+			<RowDefinition Height="34*"/>
+		</Grid.RowDefinitions>
+		<Grid Background="#FF2E0906" Grid.ColumnSpan="6">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="251*"/>
+				<ColumnDefinition Width="186*"/>
+				<ColumnDefinition Width="855*"/>
+			</Grid.ColumnDefinitions>
+			<Label Background="#FF2E0906" Name="papers" Foreground="White" VerticalContentAlignment="Top">
+				Count of papers 0/3
+			</Label>
+			<Label Background="#FF2E0906" Grid.Column="1" Foreground="White" Margin="100,0,0,0" VerticalContentAlignment="Top">
+				Speed boost:
+			</Label>
+			<ProgressBar Minimum="0" Maximum="510" Value="510" Grid.Column="2" Margin="4,4,350,4" Name="Speeder" Foreground="#FF00FF0C" Background="Black"/>
+		</Grid>
+		<!--<MediaElement x:Name="media1" Source="Sounds\Main_sound.mp3" LoadedBehavior="Manual" Grid.Row="2" Grid.ColumnSpan="6"/>-->
+		<Canvas Background="#FF2E0906"  Name="canvas" Grid.Row="1" Grid.ColumnSpan="6" >
+		</Canvas>
+		<Image Visibility="Collapsed" Name="lt1" Source="Textures\letter.jpg" Grid.Row="2" Grid.Column="0" Stretch="Uniform" ></Image>
+		<Image Visibility="Collapsed" Name="lt2" Source="Textures\letter.jpg" Grid.Row="2" Grid.Column="1" Stretch="Uniform" ></Image>
+		<Image Visibility="Collapsed" Name="lt3" Source="Textures\letter.jpg" Grid.Row="2" Grid.Column="2" Stretch="Uniform" ></Image>
+		<Image Visibility="Collapsed" Name="key" Source="Textures\red_k.png" Grid.Row="2" Grid.Column="3" Stretch="Uniform" ></Image>
+
+	</Grid>
 
 </Window>

@@ -12,7 +12,7 @@ namespace Slenderman
         public int count_of_papers=0;
         List<Item> items=new List<Item>();
         public int speed = 1;
-        public bool key = false;
+        public int key = 0;
         public Player()
         {
                 

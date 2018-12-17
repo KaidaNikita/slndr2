@@ -158,10 +158,11 @@
     <Resource Include="Textures\green.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Textures\red_k.png" />
+    <Resource Include="Textures\red.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Textures\red.png" />
+    <Content Include="Sounds\Main_sound.mp3" />
+    <Resource Include="Textures\red_k.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

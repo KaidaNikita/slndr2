@@ -54,9 +54,9 @@ namespace Slenderman
 
             //for (int i = 0; i < maze.Count; i++)
             //{
-            //    if (maze[i]==2)
+            //    if (maze[i] == 2)
             //    {
-            //       MessageBox.Show("2");
+            //        MessageBox.Show("2");
             //    }
             //}
             return maze;
