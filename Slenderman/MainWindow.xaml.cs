@@ -75,6 +75,17 @@ namespace Slenderman
             int tmpy1 = ((int)Canvas.GetTop(player) / 25);
             int tmpx2 = ((int)Canvas.GetLeft(slender) / 25);
             int tmpy2 = ((int)Canvas.GetTop(slender) / 25);
+            GeneralTransform t1 = slender.TransformToVisual(this);
+            GeneralTransform t2 = player.TransformToVisual(this);
+            Rect r1 = t1.TransformBounds(new Rect() { X = 0, Y = 0, Width = slender.ActualWidth, Height = slender.ActualHeight });
+            Rect r2 = t2.TransformBounds(new Rect() { X = 0, Y = 0, Width = player.ActualWidth, Height = player.ActualHeight });
+            bool result = r1.IntersectsWith(r2);
+            if (result)
+            {
+                MessageBox.Show("You Lose");
+                timer.Stop();
+                Close();
+            }
             Tuple<string[,],int> maptemp = mymap.FindWave(tmpx2, tmpy2, tmpx1, tmpy1);
             int sY=0;
             int sX=0;
@@ -99,14 +110,14 @@ namespace Slenderman
                         {
                             if (sX > x)
                             {
-                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 25);
+                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 10);
                                 dts.Tick += new EventHandler(LeftS);
                                 dts.Start();
 
                             }
                             if (sX < x)
                             {
-                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 25);
+                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 10);
                                 dts.Tick += new EventHandler(RightS);
                                 dts.Start();
 
@@ -117,14 +128,14 @@ namespace Slenderman
                         {
                             if (sY < y)
                             {
-                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 25);
+                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 10);
                                 dts.Tick += new EventHandler(DownS);
                                 dts.Start();
 
                             }
                             if (sY > y && sX == x)
                             {
-                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 25);
+                                dts.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 10);
                                 dts.Tick += new EventHandler(UpS);
                                 dts.Start();
 
@@ -749,6 +760,8 @@ namespace Slenderman
                                     if (player.count_of_papers >= 3)
                                     {
                                         MessageBox.Show("You WIN");
+                                        timer.Stop();
+                                        Close();
                                     }
                                     else
                                     {
