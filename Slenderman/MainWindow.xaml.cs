@@ -81,6 +81,16 @@ namespace Slenderman
                 {
                     if (maptemp.Item1[y, x] == (" " + (maptemp.Item2 - 1).ToString() + " "))
                     {
+                        GeneralTransform t1 = slender.TransformToVisual(this);
+                        GeneralTransform t2 = player.TransformToVisual(this);
+                        Rect r1 = t1.TransformBounds(new Rect() { X = 0, Y = 0, Width = slender.ActualWidth, Height = slender.ActualHeight });
+                        Rect r2 = t2.TransformBounds(new Rect() { X = 0, Y = 0, Width = player.ActualWidth, Height = player.ActualHeight });
+                        bool result = r1.IntersectsWith(r2);
+                        if (result == true)
+                        {
+                            MessageBox.Show("You Lose");
+                            Close();
+                        }
                         if (sY == y)
                         {
                             if (sX > x)
@@ -735,6 +745,7 @@ namespace Slenderman
                                     if (player.count_of_papers >= 3)
                                     {
                                         MessageBox.Show("You WIN");
+                                        Close();
                                     }
                                     else
                                     {

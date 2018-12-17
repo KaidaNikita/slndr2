@@ -161,7 +161,9 @@
     <Resource Include="Textures\red.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Sounds\Main_sound.mp3" />
+    <Content Include="Sounds\Main_sound.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Textures\red_k.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
