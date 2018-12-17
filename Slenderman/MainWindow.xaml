@@ -1,11 +1,11 @@
-﻿<Window Name="main" Icon="Textures/slender.jpg" KeyDown="Moving" x:Class="Slenderman.MainWindow"
+﻿<Window MaxHeight="1100" MaxWidth="1300" Name="main" Icon="Textures/slender.jpg" KeyDown="Moving" x:Class="Slenderman.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Slenderman"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1300" Width="1300">
+        Title="MainWindow" Height="1103.661" Width="1350.572">
 	<Window.Resources>
 		<ImageBrush x:Key="let" ImageSource="Textures/letter.jpg">
 		</ImageBrush>
@@ -23,10 +23,10 @@
 		</Grid.ColumnDefinitions>
 
 		<Grid.RowDefinitions>
-			<RowDefinition Height="29*"/>
-			<RowDefinition Height="1162*"/>
-			<RowDefinition Height="44*"/>
-			<RowDefinition Height="34*"/>
+			<RowDefinition Height="35*"/>
+			<RowDefinition Height="1092*"/>
+			<RowDefinition Height="84*"/>
+			<RowDefinition Height="58*"/>
 		</Grid.RowDefinitions>
 		<Grid Background="#FF2E0906" Grid.ColumnSpan="6">
 			<Grid.ColumnDefinitions>
@@ -47,7 +47,7 @@
 		</Canvas>
 
 		<Image MouseDown="Letter_Click" Visibility="Collapsed" Name="lt1" Source="Textures\letter.jpg" Grid.Row="2" Grid.Column="0" Stretch="Uniform" ></Image>
-		<Image MouseDown="Letter_Click" Visibility="Collapsed" Name="lt2" Source="Textures\letter.jpg" Grid.Row="2" Grid.Column="1" Stretch="Uniform" ></Image>
+		<Image MouseDown="Letter2_Click" Visibility="Collapsed" Name="lt2" Source="Textures\letter2.jpg" Grid.Row="2" Grid.Column="1" Stretch="Uniform" ></Image>
 		<Image MouseDown="Letter_Click" Visibility="Collapsed" Name="lt3" Source="Textures\letter.jpg" Grid.Row="2" Grid.Column="2" Stretch="Uniform" ></Image>
 		<Image MouseDown="Letter_Click" Visibility="Collapsed" Name="key" Source="Textures\red_k.png" Grid.Row="2" Grid.Column="3" Stretch="Uniform" ></Image>
 

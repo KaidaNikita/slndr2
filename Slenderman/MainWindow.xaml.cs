@@ -59,7 +59,12 @@ namespace Slenderman
             Letter letter = new Letter();
             letter.ShowDialog();
         }
-            private void Timer_tick(object sender, EventArgs e)
+        public void Letter2_Click(object sender, EventArgs e)
+        {
+            Letter2 letter = new Letter2();
+            letter.ShowDialog();
+        }
+        private void Timer_tick(object sender, EventArgs e)
         {
             dts.Stop();
             dts.Tick -= new EventHandler(LeftS);

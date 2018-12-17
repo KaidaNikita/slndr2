@@ -64,6 +64,9 @@
     <Compile Include="Letter.xaml.cs">
       <DependentUpon>Letter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Letter2.xaml.cs">
+      <DependentUpon>Letter2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Slender.cs" />
     <Compile Include="StartMenu.xaml.cs">
       <DependentUpon>StartMenu.xaml</DependentUpon>
@@ -77,6 +80,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Letter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Letter2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,6 +176,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sounds\Main_sound.mp3" />
+    <Resource Include="Textures\player.jpg" />
+    <Resource Include="Textures\letter2.jpg" />
     <Resource Include="Textures\red_k.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
